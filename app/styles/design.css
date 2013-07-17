@@ -655,6 +655,14 @@ header .nav, header .nav>li{
     background-image: linear-gradient(to bottom, #f5f5f5, #eee);
 }
 .recent_table th:first-child{
+    background-color: #eee;
+    background-image: -webkit-linear-gradient(top, #f5f5f5, #eee);
+    background-image: -moz-linear-gradient(top, #f5f5f5, #eee);
+    background-image: -o-linear-gradient(top, #f5f5f5, #eee);
+    background-image: -ms-linear-gradient(top, #f5f5f5, #eee);
+    background-image: linear-gradient(to bottom, #f5f5f5, #eee);
+}
+.recent_table th:first-child{
     padding-left: 20px;
     -webkit-border-radius: 10px 0 0 10px;
     -moz-border-radius: 10px 0 0 10p;
