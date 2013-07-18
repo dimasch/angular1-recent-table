@@ -1,7 +1,24 @@
+
+<table class="recent_table">
+<tr>
+    <th ng-click="sortBy('id')" style='cursor: pointer;'>Номер<i ng-class="getSortIcon('id')" style='margin-left: 10px;'></i></th>    
+    <th ng-click="sortBy('name')" style='cursor: pointer;'>Имя<i ng-class="getSortIcon('name')" style='margin-left: 10px;'></i></th>
+    <th ng-click="sortBy('start')" style='cursor: pointer;'>Дата<i ng-class="getSortIcon('start')" style='margin-left: 10px;'></i></th>    
+</tr>
+<tr ng-repeat="friend in awesomeThings | orderBy:sort:reverse">
+  <td>{{friend.id}}</td>
+  <td>{{friend.name}}</td>
+  <td>{{friend.start | date:'d MMMM yyyy'}}</td>
+</tr>
+</table>  
+
 <!-- table table-striped table-bordered -->
 
 <!-- recent_table -->
 
+<!-- date:'d MMMM yyyy' -->
+
+<!--
 <table at-table class="recent_table" list="awesomeThings">
   <thead>
     <th attribute="vowels"><i class="icon-star"></i>Contained vowels<i class="icon-star"></i></th>
@@ -14,11 +31,15 @@
           {{vowel}}
         </span>
       </td>
-      <td at-implicit sortable attribute="date">{{item.start | date:'d MMMM yyyy'}}</td>
+      <td at-implicit  attribute="date">{{item.start | orderBy:sort}}</td>
     </tr>
   </tbody>
 </table>
+-->
 
+<!-- <my-table></my-table> -->      
+
+<!--
 <table class="recent_table">
 <tr>
     <th>Заявка</th>
@@ -45,3 +66,4 @@
     <td><i class="icon_star_td"></i></td>
 </tr>
 </table>
+-->

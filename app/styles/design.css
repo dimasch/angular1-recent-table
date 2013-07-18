@@ -646,6 +646,7 @@ header .nav, header .nav>li{
     -moz-box-shadow: -1px 1px 0 #ddd, 0 -1px 0 #ddd;
     box-shadow: -1px 1px 0 #ddd, 0 -1px 0 #ddd;
 }
+/*
 .recent_table thead:first-child{
     background-color: #eee;
     background-image: -webkit-linear-gradient(top, #f5f5f5, #eee);
@@ -654,7 +655,8 @@ header .nav, header .nav>li{
     background-image: -ms-linear-gradient(top, #f5f5f5, #eee);
     background-image: linear-gradient(to bottom, #f5f5f5, #eee);
 }
-.recent_table th:first-child{
+*/
+.recent_table tr:first-child{
     background-color: #eee;
     background-image: -webkit-linear-gradient(top, #f5f5f5, #eee);
     background-image: -moz-linear-gradient(top, #f5f5f5, #eee);
@@ -690,7 +692,7 @@ header .nav, header .nav>li{
         margin: 0 20px;
         vertical-align: middle;
     }
-.recent_table tr:hover:not(:first-child) td:not(:last-child){
+.recent_table tr:hover:not(:first-child) /*td:not(:last-child)*/{
     background: #fce6a3;
 }
 .highlight td:not(:last-child), .highlight:hover td:not(:last-child){background: #fce6a3!important;}
