@@ -7,17 +7,18 @@ angular.module('angularTableApp')
       {id: 0, name: 'HTML5 Boilerplate', start: '2011-06-16'}, //  ISO 8601 yyyy-MM-dd
       {id: 1, name: 'AngularJS', start: '2011-06-16'}, 
       {id: 2, name: 'Karma', start: '2011-06-13'},            
-      {id: 3, name: 'HTML5 Boilerplate', start: '14 May 2011'},
-      {id: 4, name: 'AngularJS', start: '24 May 2011'},
-      {id: 5, name: 'Karma', start: '15 July 2011'},
-      {id: 6, name: 'HTML5 Boilerplate', start: '16 July 2011'},
-      {id: 7, name: 'AngularJS', start: '1 June 2012'},
-      {id: 8, name: 'Karma', start: '8 June 2013'}, 
-      {id: 9, name: 'HTML5 Boilerplate', start: '9 June 2013'},
-      {id: 10, name: 'AngularJS', start: '10 June 2013'},
-      {id: 11, name: 'Karma', start: '11 June 2013'} 
+      {id: 3, name: 'HTML5 Boilerplate', start: '2011-05-14'},
+      {id: 4, name: 'AngularJS', start: '2011-05-24'},
+      {id: 5, name: 'Karma', start: '2011-07-15'},
+      {id: 6, name: 'HTML5 Boilerplate', start: '2011-07-16'},
+      {id: 7, name: 'AngularJS', start: '2012-06-01'},
+      {id: 8, name: 'Karma', start: '2013-06-08'}, 
+      {id: 9, name: 'HTML5 Boilerplate', start: '2013-06-09'},
+      {id: 10, name: 'AngularJS', start: '2013-06-10'},
+      {id: 11, name: 'Karma', start: '2013-06-11'} 
     ];    
 
+    /*
     var sortAttr = 'id';
 
     $scope.sort = function(item) {  	  		  		  		
@@ -29,7 +30,8 @@ angular.module('angularTableApp')
 
   	$scope.reverse = false;
 
-  	$scope.sortBy = function(attr) {  		
+  	$scope.sortBy = function(attr) {  
+  		console.log('call');		
   		if (sortAttr != attr) {
   			$scope.reverse = true;	
   			sortAttr = attr;	
@@ -43,9 +45,9 @@ angular.module('angularTableApp')
   			return "icon-minus";
   		} else {  			
   			return $scope.reverse ? "icon-chevron-down" : "icon-chevron-up";
-  		}
-        //if $scope.descending then "icon-chevron-down" else "icon-chevron-up"
-  	};            
+  		}        
+  	};  
+  	*/          
 
     var vowels = ["a", "e", "i", "o", "u"];
     $scope.vowelsList = function(word) {

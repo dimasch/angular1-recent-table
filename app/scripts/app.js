@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('angularTableApp', ['angular-table'])
+angular.module('angularTableApp', ['recent-table'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {

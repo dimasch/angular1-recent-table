@@ -1,5 +1,31 @@
 
-<table class="recent_table">
+<table recent-table class="recent_table" list="awesomeThings">
+<!--
+<tr>
+    <th ng-click="sortBy('id')" style='cursor: pointer;'>Номер<i ng-class="getSortIcon('id')" style='margin-left: 10px;'></i></th>    
+    <th ng-click="sortBy('name')" style='cursor: pointer;'>Имя<i ng-class="getSortIcon('name')" style='margin-left: 10px;'></i></th>
+    <th ng-click="sortBy('start')" style='cursor: pointer;'>Дата<i ng-class="getSortIcon('start')" style='margin-left: 10px;'></i></th>    
+</tr>
+-->
+	<thead></thead>
+		
+	<tr>
+	  <td title="Номер" attribute="id"></td>
+	  <td title="Имя" attribute="name"></td>
+	  <td title="Дата" attribute="start" type="date"></td>
+	</tr>	
+	
+	<!--
+	<tr ng-repeat="friend in awesomeThings | orderBy:sort:reverse">
+	  <td title="Номер" attribute="id">{{friend.id}}</td>
+	  <td title="Имя" attribute="name">{{friend.name}}</td>
+	  <td title="Дата" attribute="start" type="date">{{friend.start | date:'d MMMM yyyy'}}</td>
+	</tr>
+	-->		
+</table>
+
+<!--
+<table recent-table class="recent_table">
 <tr>
     <th ng-click="sortBy('id')" style='cursor: pointer;'>Номер<i ng-class="getSortIcon('id')" style='margin-left: 10px;'></i></th>    
     <th ng-click="sortBy('name')" style='cursor: pointer;'>Имя<i ng-class="getSortIcon('name')" style='margin-left: 10px;'></i></th>
@@ -10,7 +36,8 @@
   <td>{{friend.name}}</td>
   <td>{{friend.start | date:'d MMMM yyyy'}}</td>
 </tr>
-</table>  
+</table>
+-->
 
 <!-- table table-striped table-bordered -->
 
