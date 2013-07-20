@@ -10,7 +10,7 @@ angular.module('recent-table')
       scope: true,      
       controller: function($scope, $element, $attrs) {
         
-        var sortAttr =  $element.find('tbody td:first').attr('attribute');//'id';
+        var sortAttr = $element.find('tbody td:first').attr('attribute');//'id';
 
         var dateEls = $element.find('tbody td[type=date]');
         var dateAttrs = $.map(dateEls, function(val) {          
@@ -60,12 +60,14 @@ angular.module('recent-table')
           var tr = angular.element("<tr></tr>");
           var th, icon;
           angular.forEach(bodyDefs, function(def) {
-            th = angular.element("<th style='cursor: pointer;'></th>"); 
+            th = angular.element("<th style='cursor: pointer;'></th>");
             th.html('' + def.title);
-            th.attr("ng-click", "sortBy('"+ def.attribute + "')");
-            icon = angular.element("<i style='margin-left: 10px;'></i>");
-            icon.attr("ng-class", "getSortIcon('" + def.attribute + "')");
-            th.append(icon);                                                
+            if (def.sortable) {
+              th.attr("ng-click", "sortBy('"+ def.attribute + "')");
+              icon = angular.element("<i style='margin-left: 10px;'></i>");
+              icon.attr("ng-class", "getSortIcon('" + def.attribute + "')");
+              th.append(icon);
+            }                                                
             tr.append(th);
           });
           return tr;
@@ -79,7 +81,8 @@ angular.module('recent-table')
             defs.push({
               title: el.attr('title'), 
               attribute: el.attr('attribute'),
-              type: el.attr('type')
+              type: el.attr('type'),
+              sortable: angular.isDefined(el.attr('sortable')) ? true : false
             });                       
           });
           return defs;
