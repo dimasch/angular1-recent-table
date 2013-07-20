@@ -87,11 +87,14 @@ angular.module('recent-table')
         
         // Hide the initial template
         element.find('tbody tr:first').hide();
+                
+        var thead = angular.element('<thead></thead>');
+        element.prepend(thead);
 
         var bodyDefs = getBodyDefs();
 
-        var header = constructHeader(bodyDefs);
-        element.find('thead').append(header);
+        var header = constructHeader(bodyDefs);        
+        thead.append(header);
 
         var body = constructBody(bodyDefs);
         element.find('tbody').append(body);
