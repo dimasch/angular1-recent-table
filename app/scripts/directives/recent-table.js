@@ -50,7 +50,7 @@ angular.module('recent-table')
           tr.attr("ng-repeat", "item in " + attrs.list + " | orderBy:sort:reverse");
           var td;
           angular.forEach(bodyDefs, function(def) {            
-            td = angular.element("<td>{{item." + def.attribute + (angular.isDefined(def.type) ? " | date:'d MMMM yyyy'" : '') + "}}</td>");  
+            td = angular.element("<td>{{item." + def.attribute + (def.type == 'date' ? " | date:'d MMMM yyyy'" : '') + "}}</td>");  
             tr.append(td);
           });
           return tr;
@@ -81,7 +81,7 @@ angular.module('recent-table')
             defs.push({
               title: el.attr('title'), 
               attribute: el.attr('attribute'),
-              type: el.attr('type'),
+              type: angular.isDefined(el.attr('type')) ? el.attr('type') : '',
               sortable: angular.isDefined(el.attr('sortable')) ? true : false
             });                       
           });
