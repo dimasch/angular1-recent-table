@@ -15,8 +15,7 @@ angular.module('recent-table')
         var dateEls = $element.find('tbody td[type=date]');
         var dateAttrs = $.map(dateEls, function(val) {          
           return angular.element(val).attr('attribute');
-        });
-        //debugger;
+        });        
 
         $scope.sort = function(item) {           
           if ($.inArray(sortAttr, dateAttrs) !== -1)  {
@@ -27,8 +26,7 @@ angular.module('recent-table')
 
         $scope.reverse = false;
 
-        $scope.sortBy = function(attr) {  
-          //console.log('call');    
+        $scope.sortBy = function(attr) {                
           if (sortAttr != attr) {
             $scope.reverse = true;  
             sortAttr = attr;  
@@ -51,8 +49,7 @@ angular.module('recent-table')
           var tr = angular.element('<tr></tr>');
           tr.attr("ng-repeat", "item in " + attrs.list + " | orderBy:sort:reverse");
           var td;
-          angular.forEach(bodyDefs, function(def) {
-            //debugger;
+          angular.forEach(bodyDefs, function(def) {            
             td = angular.element("<td>{{item." + def.attribute + (angular.isDefined(def.type) ? " | date:'d MMMM yyyy'" : '') + "}}</td>");  
             tr.append(td);
           });
@@ -87,6 +84,9 @@ angular.module('recent-table')
           });
           return defs;
         }        
+        
+        // Hide the initial template
+        element.find('tbody tr:first').hide();
 
         var bodyDefs = getBodyDefs();
 
@@ -96,7 +96,7 @@ angular.module('recent-table')
         var body = constructBody(bodyDefs);
         element.find('tbody').append(body);
                       
-        // 
+        // Compile contents of element in this scope
         $compile(element.contents())(scope);                        
       }
     };
