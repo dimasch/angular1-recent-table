@@ -60,12 +60,12 @@ angular.module('recent-table')
           return tr;
         }          
 
-        function constructHeader(bodyDefs) {          
+        function constructHeader(bodyDefs, heads) {          
           var tr = angular.element("<tr></tr>");
-          var th, icon;
+          var th, icon;          
           angular.forEach(bodyDefs, function(def) {
-            th = angular.element("<th style='cursor: pointer;'></th>");
-            th.html('' + def.title);
+            th = angular.element("<th style='cursor: pointer;'></th>");            
+            th.html(angular.isDefined(heads[def.attribute]) ? heads[def.attribute] : def.title);
             if (def.sortable) {
               th.attr("ng-click", "sortBy('"+ def.attribute + "')");
               icon = angular.element("<i style='margin-left: 10px;'></i>");
@@ -75,6 +75,17 @@ angular.module('recent-table')
             tr.append(th);
           });
           return tr;
+        }
+
+        function getHeadDefs() {          
+          var defs = {};
+          var ths = element.find('thead th');  
+          var el;
+          angular.forEach(ths, function(td) {
+             el = angular.element(td);
+             defs[el.attr('attribute')] = el.html();
+          });          
+          return defs;
         }
 
         function getBodyDefs() {
@@ -93,15 +104,18 @@ angular.module('recent-table')
           return defs;
         }        
         
-        // Hide the initial template
+        // Hide the initial tbody
         element.find('tbody tr:first').hide();
+
+        // Hide the initial thead
+        element.find('thead').hide();        
                 
         var thead = angular.element('<thead></thead>');
         element.prepend(thead);
 
         var bodyDefs = getBodyDefs();
 
-        var header = constructHeader(bodyDefs);        
+        var header = constructHeader(bodyDefs, getHeadDefs());        
         thead.append(header);
 
         var body = constructBody(bodyDefs);
