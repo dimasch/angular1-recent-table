@@ -1,8 +1,8 @@
 <table recent-table class="recent_table" list="lastTickets">	
 	<tr>
 	  <td title="Номер" attribute="id"></td>
-	  <td title="Имя" attribute="name" sortable></td>
-	  <td title="Старт" attribute="start" sortable type="date"></td>
-	  <td title="Финиш" attribute="finish" type="date"></td>
+	  <td title="Имя" attribute="name" sortable>{{item.name}}</td>
+	  <td title="Старт" attribute="start" sortable type="date">{{item.start | date:'d MMMM yyyy'}}</td>
+	  <td title="Финиш" attribute="finish" type="date">{{item.finish | date:'d MMMM yyyy'}}</td>
 	</tr>	
 </table>

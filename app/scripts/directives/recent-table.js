@@ -49,8 +49,12 @@ angular.module('recent-table')
           var tr = angular.element('<tr></tr>');
           tr.attr("ng-repeat", "item in " + attrs.list + " | orderBy:sort:reverse");
           var td;
-          angular.forEach(bodyDefs, function(def) {            
-            td = angular.element("<td>{{item." + def.attribute + (def.type == 'date' ? " | date:'d MMMM yyyy'" : '') + "}}</td>");  
+          angular.forEach(bodyDefs, function(def) {                        
+            if (def.html != '') {
+              td = angular.element("<td>" + def.html + "</td>");            
+            } else {
+              td = angular.element("<td>{{item." + def.attribute + (def.type == 'date' ? " | date:'d MMMM yyyy'" : '') + "}}</td>");    
+            }  
             tr.append(td);
           });
           return tr;
@@ -77,10 +81,11 @@ angular.module('recent-table')
           var defs = [];
           var tds = element.find('tbody td');
           angular.forEach(tds, function(td) {
-            var el = angular.element(td);
+            var el = angular.element(td);                        
             defs.push({
               title: el.attr('title'), 
               attribute: el.attr('attribute'),
+              html: el.html(),
               type: angular.isDefined(el.attr('type')) ? el.attr('type') : '',
               sortable: angular.isDefined(el.attr('sortable')) ? true : false
             });                       
