@@ -4,13 +4,12 @@ angular.module('recent-table', []);
 
 angular.module('recent-table')
   .directive('recentTable', function ($compile) {
-    return {
-      //template: '<div></div>',
+    return {      
       restrict: 'A',
       scope: true,      
       controller: function($scope, $element, $attrs) {
         
-        var sortAttr = $element.find('tbody td:first').attr('attribute');//'id';
+        var sortAttr = $element.find('tbody td:first').attr('attribute');
 
         var dateEls = $element.find('tbody td[type=date]');
         var dateAttrs = $.map(dateEls, function(val) {          
@@ -64,11 +63,12 @@ angular.module('recent-table')
         function constructHeader(bodyDefs, heads) {          
           var tr = angular.element("<tr></tr>");
           var th, icon, widthStyle;          
-          angular.forEach(bodyDefs, function(def) {
+          angular.forEach(bodyDefs, function(def) {            
             widthStyle = (def.width != '') ? ('min-width: ' + def.width + 'px;') : '';
-            th = angular.element("<th style='cursor: pointer;" +  widthStyle  + "'></th>");            
+            th = angular.element("<th style='cursor: pointer;" +  widthStyle  + "'></th>");
+            th.attr("data-resizable-column-id", def.attribute);            
             th.html(angular.isDefined(heads[def.attribute]) ? heads[def.attribute] : def.title);
-            if (def.sortable) {
+            if (def.sortable) {              
               th.attr("ng-click", "sortBy('"+ def.attribute + "')");
               icon = angular.element("<i style='margin-left: 10px;'></i>");
               icon.attr("ng-class", "getSortIcon('" + def.attribute + "')");
@@ -123,6 +123,10 @@ angular.module('recent-table')
 
         var body = constructBody(bodyDefs);
         element.find('tbody').append(body);
+
+        //debugger;
+
+        element.resizableColumns({store: store});
                       
         // Compile contents of element in this scope
         $compile(element.contents())(scope);                        

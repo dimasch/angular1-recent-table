@@ -2,6 +2,5 @@
 
 angular.module('angularTableApp')
   .controller('MainCtrl', function ($scope) {
-  	         
-    
+  	      
   });
