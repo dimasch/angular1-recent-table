@@ -47,13 +47,14 @@ angular.module('recent-table')
         function constructBody(bodyDefs) {
           var tr = angular.element('<tr></tr>');
           tr.attr("ng-repeat", "item in " + attrs.list + " | orderBy:sort:reverse");
-          var td;
+          var td, widthStyle;
           angular.forEach(bodyDefs, function(def) {                        
+            widthStyle = (def.width != '') ? ('max-width: ' + def.width + 'px;') : 'max-width: 100px;';
             if (def.html != '') {
-              td = angular.element("<td>" + def.html + "</td>");            
+              td = angular.element("<td style='" + widthStyle + "'>" + def.html + "</td>");            
             } else {
               // 'd MMMM yyyy h:mm:ss'
-              td = angular.element("<td>{{item." + def.attribute + (def.type == 'date' ? " | date: 'medium'" : '') + "}}</td>");    
+              td = angular.element("<td style='" + widthStyle + "'>{{item." + def.attribute + (def.type == 'date' ? " | date: 'medium'" : '') + "}}</td>");    
             }  
             tr.append(td);
           });
@@ -63,12 +64,12 @@ angular.module('recent-table')
         function constructHeader(bodyDefs, heads) {          
           var tr = angular.element("<tr></tr>");
           var th, icon, widthStyle;          
-          angular.forEach(bodyDefs, function(def) {            
-            widthStyle = (def.width != '') ? ('min-width: ' + def.width + 'px;') : '';
-            th = angular.element("<th style='cursor: pointer;" +  widthStyle  + "'></th>");
-            th.attr("data-resizable-column-id", def.attribute);            
+          angular.forEach(bodyDefs, function(def) {
+            widthStyle = (def.width != '') ? ('max-width: ' + def.width + 'px;') : 'max-width: 100px;';
+            th = angular.element("<th style='cursor: pointer;" +  widthStyle  + "'></th>"); 
+            th.attr("data-resizable-column-id", def.attribute);           
             th.html(angular.isDefined(heads[def.attribute]) ? heads[def.attribute] : def.title);
-            if (def.sortable) {              
+            if (def.sortable) {
               th.attr("ng-click", "sortBy('"+ def.attribute + "')");
               icon = angular.element("<i style='margin-left: 10px;'></i>");
               icon.attr("ng-class", "getSortIcon('" + def.attribute + "')");
@@ -124,8 +125,7 @@ angular.module('recent-table')
         var body = constructBody(bodyDefs);
         element.find('tbody').append(body);
 
-        //debugger;
-
+        // Call Resize Plugin
         element.resizableColumns({store: store});
                       
         // Compile contents of element in this scope
