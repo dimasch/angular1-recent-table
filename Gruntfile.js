@@ -43,13 +43,13 @@ module.exports = function (grunt) {
         tasks: ['livereload']
       }
     },
-    connect: {
+    connect: {     
       options: {
         port: 9008,
         // Change this to '0.0.0.0' to access the server from outside.
-        hostname: 'localhost'
+        hostname: 'localhost'              
       },
-      livereload: {
+      dev: {
         options: {
           middleware: function (connect) {
             return [
@@ -60,6 +60,17 @@ module.exports = function (grunt) {
           }
         }
       },
+      prod: {
+        options: {
+          middleware: function (connect) {
+            return [
+              lrSnippet,
+              mountFolder(connect, '.tmp'),
+              mountFolder(connect, yeomanConfig.dist)
+            ];
+          }
+        }
+      },             
       test: {
         options: {
           middleware: function (connect) {
@@ -262,12 +273,22 @@ module.exports = function (grunt) {
 
   grunt.renameTask('regarde', 'watch');
 
-  grunt.registerTask('server', [
+  grunt.registerTask('dev', [
     'clean:server',
     'coffee:dist',
     'compass:server',
-    'livereload-start',
-    'connect:livereload',
+    'livereload-start',    
+    'connect:dev',
+    'open',
+    'watch'
+  ]);
+
+   grunt.registerTask('prod', [
+    'clean:server',
+    'coffee:dist',
+    'compass:server',
+    'livereload-start',    
+    'connect:prod',
     'open',
     'watch'
   ]);
@@ -282,8 +303,8 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
-    'jshint',
-    'test',
+    //'jshint',
+    //'test',
     'coffee',
     'compass:dist',
     'useminPrepare',
